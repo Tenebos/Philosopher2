@@ -6,7 +6,7 @@
 /*   By: aldamien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:23:21 by aldamien          #+#    #+#             */
-/*   Updated: 2022/01/19 15:04:02 by aldamien         ###   ########.fr       */
+/*   Updated: 2022/01/19 19:30:04 by aldamien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_philosopher
 	const int	*time_to_sleep;
 	const int	*time_to_die;
 	const int	*nbr_meat;
-	int			enought_eat;
+	int			*enought_eat;
 	long int	ms;
 	int			is_dead;
 	int			*stop;
@@ -47,6 +47,7 @@ typedef struct s_info
 	t_philo	*conclave;
 	t_mutex	*forks;
 	t_mutex	text;
+	int		enought_eat;
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		time_to_die;

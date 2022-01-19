@@ -3,7 +3,6 @@ SRC    = clean.c\
 	 init.c\
 	 init2.c\
 	 loop.c\
-	 loop2.c\
 	 main.c\
 	 time.c\
 	 utils.c

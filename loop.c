@@ -6,7 +6,7 @@
 /*   By: aldamien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:34:12 by aldamien          #+#    #+#             */
-/*   Updated: 2022/01/19 15:12:02 by aldamien         ###   ########.fr       */
+/*   Updated: 2022/01/20 00:03:54 by aldamien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	*death_loop(t_info *faustine)
 			printf("%ld : Philosopher %d died\n", ms, i);
 			pthread_mutex_unlock(&faustine->text);
 		}
-		if (faustine->conclave[i].enought_eat == 1)
-		{
-			enought(faustine);
-		}
+		if (faustine->enought_eat == faustine->philo_nbr)
+			faustine->stop = 1;
 		if (i + 1 < faustine->philo_nbr)
 			i++;
 		else
@@ -49,11 +47,13 @@ void	*main_loop(t_philosopher *philo)
 	{
 		ft_eat(philo);
 		i++;
+		if (i == *philo->nbr_meat)
+		{
+			*(philo->enought_eat) += 1;
+		}
 		ft_print("is sleeping", 0, philo);
 		usleep(*philo->time_to_sleep);
 		ft_print("is thinking", 0, philo);
-		if (i == *philo->nbr_meat)
-			philo->enought_eat = 1;
 		usleep(1000);
 	}
 	return (NULL);
@@ -93,10 +93,12 @@ void	ft_eat(t_philosopher *philo)
 	pthread_mutex_lock(philo->text);
 	if (*philo->stop == 0)
 	{
-		printf("%ld : Philosopher %d has taken a fork\n",
-			philo->ms, philo->number);
-		printf("%ld : Philosopher %d is eating\n",
-			philo->ms, philo->number);
+		if (*philo->stop == 0)
+			printf("%ld : Philosopher %d has taken a fork\n",
+				philo->ms, philo->number);
+		if (*philo->stop == 0)
+			printf("%ld : Philosopher %d is eating\n",
+				philo->ms, philo->number);
 	}
 	pthread_mutex_unlock(philo->text);
 	usleep(*philo->time_to_eat);

@@ -6,7 +6,7 @@
 /*   By: aldamien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 09:48:15 by aldamien          #+#    #+#             */
-/*   Updated: 2022/01/19 14:03:29 by aldamien         ###   ########.fr       */
+/*   Updated: 2022/01/19 23:48:10 by aldamien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_philo(t_info *info, int i, long int time)
 	info->conclave[i].time_to_die = &info->time_to_die;
 	info->conclave[i].time_to_sleep = &info->time_to_sleep;
 	info->conclave[i].nbr_meat = &info->nbr_meat;
-	info->conclave[i].enought_eat = 0;
+	info->conclave[i].enought_eat = &info->enought_eat;
 	info->conclave[i].text = &info->text;
 	info->conclave[i].is_dead = 0;
 	info->conclave[i].stop = &info->stop;
